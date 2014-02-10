@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="app_name">KBS</string>
+    <string name="title_activity_welcome">KBS Main Menu</string>
+    <string name="video_not_found">Video Not Found! </string>
+
+</resources>

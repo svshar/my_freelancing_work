@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="6" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:weightSum="3" >
+
+        <Button
+            android:id="@+id/buttonSongs"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="onClick" />
+
+        <Button
+            android:id="@+id/buttonCartoon"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="onClick" />
+
+        <Button
+            android:id="@+id/buttonVideo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="onClick" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:weightSum="3" >
+
+        <Button
+            android:id="@+id/buttonFlashCards"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:background="@android:color/transparent"
+            android:onClick="onClick" />
+
+        <Button
+            android:id="@+id/buttonMainMoview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:background="@android:color/transparent"
+            android:onClick="onClick" />
+    </LinearLayout>
+
+</LinearLayout>
