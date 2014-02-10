@@ -1,0 +1,38 @@
+!SESSION 2014-02-10 23:00:25.193 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_35
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_IN
+Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product -data D:\kbs_workspace\my_freelancing_work -product org.eclipse.epp.package.jee.product
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-02-10 23:02:05.977
+!MESSAGE 
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource '/KBS/res' does not exist.
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:320)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:194)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:266)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:249)
+	at com.android.ide.eclipse.adt.internal.sdk.Sdk$7.run(Sdk.java:1453)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.core.resources 4 368 2014-02-10 23:02:05.978
+!MESSAGE Resource '/KBS/res' does not exist.
+
+!ENTRY com.amazonaws.eclipse.sdk.ui 4 0 2014-02-10 23:10:52.644
+!MESSAGE Couldn't download latest SDK
+!STACK 0
+java.io.EOFException
+	at java.util.zip.ZipInputStream.readFully(Unknown Source)
+	at java.util.zip.ZipInputStream.readLOC(Unknown Source)
+	at java.util.zip.ZipInputStream.getNextEntry(Unknown Source)
+	at com.amazonaws.eclipse.sdk.ui.AbstractSdkManager.downloadSDK(AbstractSdkManager.java:321)
+	at com.amazonaws.eclipse.sdk.ui.AbstractSdkManager.access$3(AbstractSdkManager.java:286)
+	at com.amazonaws.eclipse.sdk.ui.AbstractSdkManager$SdkDownloadJob.run(AbstractSdkManager.java:257)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2014-02-10 23:20:11.785
+!MESSAGE Registering: com.google.appengine.eclipse.sdkbundle_1.6.4.v201203300216r37
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2014-02-10 23:20:15.397
+!MESSAGE Registering: com.google.gwt.eclipse.sdkbundle_2.4.0.v201206290132-rel-r37

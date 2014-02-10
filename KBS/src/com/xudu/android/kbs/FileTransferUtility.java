@@ -13,6 +13,8 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 
+import com.xudu.android.kbs.services.SyncService;
+
 import android.util.Log;
 
 /**
@@ -24,6 +26,7 @@ public class FileTransferUtility {
 	private static final String TAG = "FTP_CLIENT";
 	public FTPClient mFTPClient = null;
 	private Vector<String> vector = new Vector<String>();
+	private float mprogress = 2f;
 
 	/**
 	 * 
@@ -176,6 +179,10 @@ public class FileTransferUtility {
 							+ currentFileName);
 					vector.add(parentDir + "/" + currentDir + "/"
 							+ currentFileName);
+					if (SyncService.progress < 11.0f) {
+						mprogress = mprogress + 0.15f;
+						SyncService.progress = (int) mprogress;
+					}
 				}
 			}
 		}

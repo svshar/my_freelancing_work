@@ -1,0 +1,286 @@
+package com.xudu.android.kbs;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Vector;
+
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
+import org.apache.commons.net.ftp.FTPReply;
+
+import android.util.Log;
+
+/**
+ * @author DevdattaC
+ * @since 23 July 2011
+ */
+public class FileTransferUtility {
+
+	private static final String TAG = "FTP_CLIENT";
+	public FTPClient mFTPClient = null;
+	private Vector<String> vector = new Vector<String>();
+
+	/**
+	 * 
+	 * @param host
+	 * @param username
+	 * @param password
+	 * @param port
+	 * @return
+	 */
+	public boolean ftpConnect(String host, String username, String password,
+			int port) {
+		try {
+			mFTPClient = new FTPClient();
+			// connecting to the host
+			mFTPClient.connect(host, port);
+
+			mFTPClient.enterLocalPassiveMode();
+			mFTPClient.setBufferSize(1024 * 1024);
+			mFTPClient.setKeepAlive(true);
+
+			// now check the reply code, if positive mean connection success
+			if (FTPReply.isPositiveCompletion(mFTPClient.getReplyCode())) {
+				// login using username & password
+				boolean status = mFTPClient.login(username, password);
+				Log.d(TAG, "Status :" + status);
+
+				return status;
+			}
+
+		} catch (Exception e) {
+			Log.d(TAG, "Error: could not connect to host " + host);
+		}
+
+		return false;
+	}
+
+	public boolean ftpDisconnect() {
+		try {
+			mFTPClient.logout();
+			mFTPClient.disconnect();
+			return true;
+		} catch (Exception e) {
+			Log.d(TAG, "Error occurred while disconnecting from ftp server.");
+		}
+
+		return false;
+	}
+
+	/**
+	 * mFTPClient: FTP client connection object (see FTP connection example)
+	 * srcFilePath: source file path in sdcard desFileName: file name to be
+	 * stored in FTP server desDirectory: directory path where the file should
+	 * be upload to
+	 */
+	public boolean ftpUpload(String srcFilePath, String desFileName) {
+
+		boolean status = false;
+		try {
+
+			mFTPClient.enterLocalPassiveMode();
+			InputStream srcFileStream = new FileInputStream(srcFilePath);
+
+			mFTPClient.setFileType(FTP.BINARY_FILE_TYPE);
+			status = mFTPClient.storeFile(desFileName, srcFileStream);
+
+			Log.d(TAG, "Upload Status :" + status);
+
+			srcFileStream.close();
+
+		} catch (Exception e) {
+			Log.d(TAG, "upload failed");
+		}
+
+		return status;
+	}
+
+	/**
+	 * mFTPClient: FTP client connection object (see FTP connection example)
+	 * srcFilePath: path to the source file in FTP server desFilePath: path to
+	 * the destination file to be saved in sdcard
+	 */
+	public boolean ftpDownload(String srcFilePath, String desFilePath) {
+		boolean status = false;
+		try {
+			Log.e("kbs", "downloadng: " + srcFilePath);
+			// mFTPClient.enterLocalPassiveMode();
+
+			File file = new File(desFilePath);
+			if (!file.getParentFile().exists())
+				file.getParentFile().mkdirs();
+
+			OutputStream desFileStream = new FileOutputStream(file);
+
+			mFTPClient.setFileType(FTP.BINARY_FILE_TYPE);
+
+			mFTPClient.setBufferSize(1024 * 1024);
+
+			status = mFTPClient.retrieveFile(srcFilePath, desFileStream);
+
+			if (!status) {
+				try {
+					desFileStream.close();
+					if (file.exists())
+						file.delete();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			Log.i(TAG, "Download Status: " + status);
+			if (file.exists())
+				Log.i(TAG, "Size: " + (file.length() / 1048576) + " MB");
+
+			desFileStream.close();
+
+		} catch (Exception e) {
+			Log.d(TAG, "download failed");
+		}
+
+		return status;
+	}
+
+	public Vector<String> listDirectory(String parentDir, String currentDir,
+			int level) throws IOException {
+		String dirToList = parentDir;
+		if (!currentDir.equals("")) {
+			dirToList += "/" + currentDir;
+		}
+		String encoded = new String(dirToList.getBytes("UTF-8"), "ISO-8859-1");
+		FTPFile[] subFiles = mFTPClient.listFiles(encoded);
+		if (subFiles != null && subFiles.length > 0) {
+			for (FTPFile aFile : subFiles) {
+				String currentFileName = aFile.getName();
+				String currentFilePath = aFile.getGroup();
+				if (currentFileName.equals(".") || currentFileName.equals("..")) {
+					// skip parent directory and directory itself
+					continue;
+				}
+				for (int i = 0; i < level; i++) {
+					System.out.print("\t");
+					// Log.e("kbs", "\t" + level);
+				}
+				if (aFile.isDirectory()) {
+					// Log.e("kbs", "[" + currentFileName + "]");
+					// System.out.println("[" + currentFileName + "]");
+					listDirectory(dirToList, currentFileName, level + 1);
+				} else {
+					// System.out.println(currentFileName);
+					Log.e("kbs", parentDir + "/" + currentDir + "/"
+							+ currentFileName);
+					vector.add(parentDir + "/" + currentDir + "/"
+							+ currentFileName);
+					Sync.progress=progress
+				}
+			}
+		}
+		return vector;
+	}
+
+	/**
+	 * 
+	 * @param dir_path
+	 */
+	public Vector<String> ftpPrintFilesList(String dir_path) {
+
+		Vector<String> vector = new Vector<String>();
+
+		try {
+
+			mFTPClient.enterLocalPassiveMode();
+			FTPFile[] ftpFiles = mFTPClient.listFiles(dir_path);
+			int length = ftpFiles.length;
+
+			for (int i = 0; i < length; i++) {
+				String name = ftpFiles[i].getName();
+				boolean isFile = ftpFiles[i].isFile();
+
+				if (isFile) {
+					vector.add(name);
+					Log.i(TAG, "File : " + name);
+				} else {
+					Log.i(TAG, "Directory : " + name);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return vector;
+	}
+
+	/**
+	 * 
+	 * @param directory_path
+	 * @return
+	 */
+	public boolean ftpChangeDirectory(String directory_path) {
+		boolean flag = false;
+		try {
+			flag = mFTPClient.changeWorkingDirectory(directory_path);
+
+		} catch (Exception e) {
+			Log.d(TAG, "Error: could not change directory to " + directory_path);
+		}
+
+		return flag;
+	}
+
+	/**
+	 * 
+	 * @param dir_path
+	 * @return
+	 */
+	public boolean ftpRemoveDirectory(String dir_path) {
+		try {
+			boolean status = mFTPClient.removeDirectory(dir_path);
+			return status;
+		} catch (Exception e) {
+			Log.d(TAG, "Error: could not remove directory named " + dir_path);
+		}
+
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param from
+	 * @param to
+	 * @return
+	 */
+	public boolean ftpRenameFile(String from, String to) {
+		try {
+			boolean status = mFTPClient.rename(from, to);
+			return status;
+		} catch (Exception e) {
+			Log.d(TAG, "Could not rename file: " + from + " to: " + to);
+		}
+
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param new_dir_path
+	 * @return
+	 */
+	public boolean ftpMakeDirectory(String new_dir_path) {
+		boolean status = true;
+		try {
+			mFTPClient.enterLocalPassiveMode();
+			status = mFTPClient.makeDirectory(new_dir_path);
+
+		} catch (Exception e) {
+			Log.d(TAG, "Error: could not create new directory named "
+					+ new_dir_path);
+		}
+
+		return status;
+	}
+}

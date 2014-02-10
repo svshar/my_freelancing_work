@@ -147,8 +147,9 @@ public class SyncService extends IntentService {
 
 			if (!status)
 				break;
-
+			progress = 1;
 			Vector<String> vectLocal = getLocalFileList(baseDirPath, "", 0);
+			progress = 2;
 
 			// Vector<String> vectLocal = getLocalFileList(baseDirPath
 			// + arrPath[i]);
@@ -175,7 +176,8 @@ public class SyncService extends IntentService {
 					Log.e("KBS",
 							"Already downloaded:" + vectRemote.elementAt(j));
 				mFilesDownloaded++;
-				progress = (int) (mFilesDownloaded * 100 / mFilestoDownload);
+				// progress = (int) (mFilesDownloaded * 100 / mFilestoDownload);
+				progress = progress + (int) (1 * 90 / mFilestoDownload);
 				// listener.onDownloadProgress(mFilestoDownload, progress);
 				// publishing the progress....
 				// Bundle resultData = new Bundle();

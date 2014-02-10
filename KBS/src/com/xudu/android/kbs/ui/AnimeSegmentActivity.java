@@ -111,7 +111,7 @@ public class AnimeSegmentActivity extends Activity implements
 		switch (id) {
 		case R.id.buttonAnimeBear:
 			String Main_moview_Intro = Constants.KBS_ROOT
-					+ Constants.paths.Main_Movie[0] + Constants.paths.intro;
+					+ Constants.paths.Main_Movie[9] + Constants.paths.intro;
 
 			intent = new Intent();
 			intent.setClass(AnimeSegmentActivity.this,
@@ -121,7 +121,7 @@ public class AnimeSegmentActivity extends Activity implements
 			break;
 		case R.id.buttonAnimeCow:
 			Main_moview_Intro = Constants.KBS_ROOT
-					+ Constants.paths.Main_Movie[4] + Constants.paths.intro;
+					+ Constants.paths.Main_Movie[17] + Constants.paths.intro;
 
 			intent = new Intent();
 			intent.setClass(AnimeSegmentActivity.this,
@@ -133,7 +133,7 @@ public class AnimeSegmentActivity extends Activity implements
 		case R.id.buttonAnimeGoat:
 
 			Main_moview_Intro = Constants.KBS_ROOT
-					+ Constants.paths.Main_Movie[8] + Constants.paths.intro;
+					+ Constants.paths.Main_Movie[13] + Constants.paths.intro;
 
 			intent = new Intent();
 			intent.setClass(AnimeSegmentActivity.this,
