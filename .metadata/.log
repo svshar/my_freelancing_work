@@ -36,3 +36,160 @@ java.io.EOFException
 
 !ENTRY com.google.gdt.eclipse.suite 1 0 2014-02-10 23:20:15.397
 !MESSAGE Registering: com.google.gwt.eclipse.sdkbundle_2.4.0.v201206290132-rel-r37
+!SESSION 2014-02-11 11:28:34.252 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_35
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_IN
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY com.amazonaws.eclipse.core 4 0 2014-02-11 11:29:20.891
+!MESSAGE Failed to cache regions file
+!STACK 0
+com.amazonaws.AmazonClientException: Unable to execute HTTP request: aws-vs-toolkit.s3.amazonaws.com
+	at com.amazonaws.http.AmazonHttpClient.executeHelper(AmazonHttpClient.java:299)
+	at com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:170)
+	at com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:2723)
+	at com.amazonaws.services.s3.AmazonS3Client.getObjectMetadata(AmazonS3Client.java:763)
+	at com.amazonaws.services.s3.AmazonS3Client.getObjectMetadata(AmazonS3Client.java:743)
+	at com.amazonaws.eclipse.core.regions.RegionUtils.cacheRegionsFile(RegionUtils.java:227)
+	at com.amazonaws.eclipse.core.regions.RegionUtils.init(RegionUtils.java:184)
+	at com.amazonaws.eclipse.core.AwsToolkitCore.start(AwsToolkitCore.java:162)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:711)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:702)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:683)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:381)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.start(AbstractBundle.java:299)
+	at org.eclipse.osgi.framework.util.SecureAction.start(SecureAction.java:440)
+	at org.eclipse.osgi.internal.loader.BundleLoader.setLazyTrigger(BundleLoader.java:268)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseLazyStarter.postFindLocalClass(EclipseLazyStarter.java:107)
+	at org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass(ClasspathManager.java:462)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLocalClass(DefaultClassLoader.java:216)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass(BundleLoader.java:400)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:476)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:429)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:417)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at org.eclipse.osgi.internal.loader.BundleLoader.loadClass(BundleLoader.java:345)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.loadClass(BundleHost.java:229)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.loadClass(AbstractBundle.java:1207)
+	at org.eclipse.core.internal.registry.osgi.RegistryStrategyOSGI.createExecutableExtension(RegistryStrategyOSGI.java:174)
+	at org.eclipse.core.internal.registry.ExtensionRegistry.createExecutableExtension(ExtensionRegistry.java:905)
+	at org.eclipse.core.internal.registry.ConfigurationElement.createExecutableExtension(ConfigurationElement.java:243)
+	at org.eclipse.core.internal.registry.ConfigurationElementHandle.createExecutableExtension(ConfigurationElementHandle.java:55)
+	at org.eclipse.ui.internal.WorkbenchPlugin$1.run(WorkbenchPlugin.java:268)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:52)
+	at org.eclipse.ui.internal.WorkbenchPlugin.createExtension(WorkbenchPlugin.java:264)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.getExecutableExtension(EarlyStartupRunnable.java:117)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:66)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.Workbench$63.run(Workbench.java:2465)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: java.net.UnknownHostException: aws-vs-toolkit.s3.amazonaws.com
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$1.lookupAllHostAddr(Unknown Source)
+	at java.net.InetAddress.getAddressFromNameService(Unknown Source)
+	at java.net.InetAddress.getAllByName0(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.resolveHostname(DefaultClientConnectionOperator.java:242)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:130)
+	at org.apache.http.impl.conn.AbstractPoolEntry.open(AbstractPoolEntry.java:149)
+	at org.apache.http.impl.conn.AbstractPooledConnAdapter.open(AbstractPooledConnAdapter.java:121)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:561)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:415)
+	at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:820)
+	at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:754)
+	at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:732)
+	at com.amazonaws.http.AmazonHttpClient.executeHelper(AmazonHttpClient.java:264)
+	... 39 more
+
+!ENTRY com.amazonaws.eclipse.sdk.ui 4 0 2014-02-11 11:30:11.341
+!MESSAGE Couldn't download latest SDK
+!STACK 0
+com.amazonaws.AmazonClientException: Unable to execute HTTP request: aws-java-sdk.s3.amazonaws.com
+	at com.amazonaws.http.AmazonHttpClient.executeHelper(AmazonHttpClient.java:299)
+	at com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:170)
+	at com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:2723)
+	at com.amazonaws.services.s3.AmazonS3Client.getObjectMetadata(AmazonS3Client.java:763)
+	at com.amazonaws.services.s3.AmazonS3Client.getObjectMetadata(AmazonS3Client.java:743)
+	at com.amazonaws.eclipse.sdk.ui.AbstractSdkManager.getLatestS3Version(AbstractSdkManager.java:180)
+	at com.amazonaws.eclipse.sdk.ui.AbstractSdkManager.access$2(AbstractSdkManager.java:176)
+	at com.amazonaws.eclipse.sdk.ui.AbstractSdkManager$SdkDownloadJob.run(AbstractSdkManager.java:255)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: java.net.UnknownHostException: aws-java-sdk.s3.amazonaws.com
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$1.lookupAllHostAddr(Unknown Source)
+	at java.net.InetAddress.getAddressFromNameService(Unknown Source)
+	at java.net.InetAddress.getAllByName0(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.resolveHostname(DefaultClientConnectionOperator.java:242)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:130)
+	at org.apache.http.impl.conn.AbstractPoolEntry.open(AbstractPoolEntry.java:149)
+	at org.apache.http.impl.conn.AbstractPooledConnAdapter.open(AbstractPooledConnAdapter.java:121)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:561)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:415)
+	at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:820)
+	at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:754)
+	at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:732)
+	at com.amazonaws.http.AmazonHttpClient.executeHelper(AmazonHttpClient.java:264)
+	... 8 more
+
+!ENTRY org.eclipse.osgi 4 0 2014-02-11 12:02:59.228
+!MESSAGE An unexpected runtime error has occurred.
+!STACK 0
+java.lang.IllegalStateException: zip file closed
+	at java.util.zip.ZipFile.ensureOpen(Unknown Source)
+	at java.util.zip.ZipFile.getInputStream(Unknown Source)
+	at java.util.zip.ZipFile.getInputStream(Unknown Source)
+	at org.eclipse.osgi.baseadaptor.bundlefile.ZipBundleEntry.getInputStream(ZipBundleEntry.java:60)
+	at org.eclipse.osgi.framework.internal.core.BundleURLConnection.connect(BundleURLConnection.java:53)
+	at org.eclipse.osgi.framework.internal.core.BundleURLConnection.getInputStream(BundleURLConnection.java:99)
+	at java.net.URL.openStream(Unknown Source)
+	at org.eclipse.osgi.internal.baseadaptor.AdaptorUtil.loadManifestFrom(AdaptorUtil.java:191)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseStorageHook.getGeneratedManifest0(EclipseStorageHook.java:410)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseStorageHook.getGeneratedManifest(EclipseStorageHook.java:397)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseStorageHook.createCachedManifest(EclipseStorageHook.java:392)
+	at org.eclipse.core.runtime.internal.adaptor.CachedManifest.getManifest(CachedManifest.java:42)
+	at org.eclipse.core.runtime.internal.adaptor.CachedManifest.get(CachedManifest.java:142)
+	at org.eclipse.core.runtime.internal.adaptor.CachedManifest.get(CachedManifest.java:1)
+	at org.eclipse.osgi.framework.internal.core.ManifestLocalization.lookupResourceBundle(ManifestLocalization.java:104)
+	at org.eclipse.osgi.framework.internal.core.ManifestLocalization.getResourceBundle(ManifestLocalization.java:91)
+	at org.eclipse.osgi.framework.internal.core.ManifestLocalization.getHeaders(ManifestLocalization.java:52)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.getHeaders(AbstractBundle.java:964)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.getHeaders(AbstractBundle.java:911)
+	at org.eclipse.epp.usagedata.internal.gathering.monitors.BundleUsageMonitor.getBundleVersion(BundleUsageMonitor.java:96)
+	at org.eclipse.epp.usagedata.internal.gathering.monitors.BundleUsageMonitor.getBundleVersion(BundleUsageMonitor.java:92)
+	at org.eclipse.epp.usagedata.internal.gathering.monitors.BundleUsageMonitor$1.bundleChanged(BundleUsageMonitor.java:52)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.dispatchEvent(BundleContextImpl.java:847)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+!SESSION 2014-02-12 07:58:40.920 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_35
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_IN
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.epp.mpc.ui 4 4 2014-02-12 08:09:09.204
+!MESSAGE Unexpected exception: null
+!STACK 0
+java.io.InterruptedIOException
+	at java.io.PipedInputStream.read(Unknown Source)
+	at java.io.PipedInputStream.read(Unknown Source)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader$1.read(FileReader.java:246)
+	at java.io.BufferedInputStream.fill(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	at org.eclipse.epp.internal.mpc.ui.catalog.ResourceProvider.putResource(ResourceProvider.java:71)
+	at org.eclipse.epp.internal.mpc.ui.catalog.AbstractResourceRunnable.run(AbstractResourceRunnable.java:65)
+	at org.eclipse.epp.internal.mpc.ui.catalog.AbstractResourceRunnable.call(AbstractResourceRunnable.java:50)
+	at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
